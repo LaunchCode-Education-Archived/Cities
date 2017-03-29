@@ -10,10 +10,8 @@ namespace Cities
         {
             List<City> cities = CityDataImporter.LoadData();
 
-            // Swap out comparers as desired
-            CompoundComparer comparer = new CompoundComparer();
-            comparer.Comparers.Add(new StateComparer());
-            comparer.Comparers.Add(new PopulationComparer());
+            // TODO Swap out comparers as desired
+            IComparer<City> comparer = new NameComparer();
 
             cities.Sort(comparer);
 
@@ -22,7 +20,7 @@ namespace Cities
             Console.ReadLine();
         }
 
-        private static void PrintCities(IEnumerable<City> cities)
+        private static void PrintCities(List<City> cities)
         {
             Console.WriteLine(City.GetTableHeader());
 
